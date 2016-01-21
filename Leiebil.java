@@ -1,9 +1,13 @@
 package innlevering1;
 
 public class Leiebil {
-	public String regNummer;
+	private String regNumber;
 	
-	public void Leiebil() {
-		
+	public Leiebil (String regNumber) {
+		this.regNumber = regNumber;
+	}
+	
+	public String getRegNumber () {
+		return regNumber;
 	}
 }
