@@ -14,6 +14,10 @@ public class Kunde implements Runnable {
 		rng = new Random();
 	}
 	
+	public String getKundeNavn () {
+		return kundeNavn;
+	}
+	
 	// TODO: Only run if 5 threads has been created
 	public void run () {
 		sleep(rng.nextInt(maxSecondsToWait)+1);	// sleep before start
