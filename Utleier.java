@@ -3,8 +3,8 @@ package innlevering1;
 import java.util.ArrayList;
 
 public class Utleier {
-	ArrayList<Leiebil> carsAvailable;
-	ArrayList<Leiebil> carsRented;
+	private ArrayList<Leiebil> carsAvailable;
+	private ArrayList<Leiebil> carsRented;
 	
 	public Utleier () {
 		carsAvailable = new ArrayList<Leiebil> (10);
@@ -17,5 +17,13 @@ public class Utleier {
 	
 	public void levereInn () {
 		
+	}
+	
+	public ArrayList<Leiebil> getCarsAvailable () {
+		return carsAvailable;
+	}
+	
+	public ArrayList<Leiebil> getCarsRented () {
+		return carsRented;
 	}
 }
