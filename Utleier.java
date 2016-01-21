@@ -7,15 +7,21 @@ public class Utleier {
 	private ArrayList<Leiebil> carsRented;
 	
 	public Utleier () {
-		carsAvailable = new ArrayList<Leiebil> ();
-		carsRented = new ArrayList<Leiebil> ();
+		// Create lists for cars available and rented
+		carsAvailable = new ArrayList<Leiebil> (5);
+		carsRented = new ArrayList<Leiebil> (5);
+		
+		// Utleier will initially have 5 cars available
+		for (int i = 1; i <= 5; i++) {
+			carsAvailable.add(new Leiebil("NO" + i));
+		}
 	}
 	
 	// Provide available car to customer and move to carsRented
 	public Leiebil leie () {
 		Leiebil car = null;
 		
-		if (carsAvailable.size() > 0) {
+		if (getCarsAvailable().size() > 0) {
 			car = carsAvailable.get(0);
 			carsAvailable.remove(car);
 			carsRented.add(car);
@@ -28,7 +34,7 @@ public class Utleier {
 	public void levereInn (Leiebil car) {
 		if (carsRented.contains(car)) {
 			carsRented.remove(car);
-			addCar(car);
+			carsAvailable.add(car);
 		}
 	}
 	
@@ -40,9 +46,5 @@ public class Utleier {
 	
 	public ArrayList<Leiebil> getCarsRented () {
 		return carsRented;
-	}
-
-	public void addCar(Leiebil car) {
-		carsAvailable.add (car);
 	}
 }
