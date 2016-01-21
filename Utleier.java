@@ -26,4 +26,8 @@ public class Utleier {
 	public ArrayList<Leiebil> getCarsRented () {
 		return carsRented;
 	}
+
+	public void addCar(Leiebil car) {
+		carsAvailable.add (car);
+	}
 }
