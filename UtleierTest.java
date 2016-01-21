@@ -25,14 +25,16 @@ public class UtleierTest {
 	}
 
 	@Test
-	public void testLeie() {
+	public void testLeieLevereInn() {
+		// Test leie
 		assertEquals(car, utleier.leie());
-		assertEquals(0, utleier.getCarsAvailable().size());
-	}
-
-	@Test
-	public void testLevereInn() {
-		fail("Not yet implemented");
+		assertFalse(utleier.getCarsAvailable().contains(car));
+		assertTrue(utleier.getCarsRented().contains(car));
+		
+		// Test levereInn
+		utleier.levereInn(car);
+		assertTrue(utleier.getCarsAvailable().contains(car));
+		assertFalse(utleier.getCarsRented().contains(car));
 	}
 
 }
