@@ -20,9 +20,11 @@ public class Kunde implements Runnable {
 	
 	// TODO: Only run if 5 threads has been created
 	public void run () {
-		sleep(rng.nextInt(maxSecondsToWait)+1);	// sleep before start
 		
 		while (true) {
+			// sleep before renting car
+			sleep(rng.nextInt(maxSecondsToWait)+1);
+			
 			// Try to rent a car
 			Leiebil car = utleier.leie();
 			
@@ -31,16 +33,23 @@ public class Kunde implements Runnable {
 				while (utleier.getCarsAvailable().size() == 0)
 					sleep(1);
 				continue;
+			} else {
+				// Print status and sleep before delivering car
+				System.out.println(getKundeNavn() + " har leid " + car.getRegNumber());
+				utleier.printCarStatus();
+				sleep(rng.nextInt(maxSecondsToWait/3)+1);	// default is 1-3 seconds
+				
+				// Deliver the car and print status
+				utleier.levereInn(car);
+				System.out.println(getKundeNavn() + " har levert inn " + car.getRegNumber());
+				utleier.printCarStatus();
 			}
-			
-			// Sleep before renting car again
-			sleep(rng.nextInt(maxSecondsToWait/3)+1);	// default is 1-3 seconds
 		}
 	}
 	
 	private void sleep (int secondsToWait) {
 		try {
-			Thread.sleep(secondsToWait);
+			Thread.sleep(secondsToWait * 1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

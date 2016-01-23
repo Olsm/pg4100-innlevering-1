@@ -38,6 +38,23 @@ public class Utleier {
 		}
 	}
 	
+	// Print status for the cars
+	public void printCarStatus () {
+		System.out.println("*********** Status for utleiebilene *****************");
+		
+		System.out.print("Ledig: ");
+		for (Leiebil car : carsAvailable) {
+			System.out.print(car.getRegNumber() + ", ");
+		}
+		
+		System.out.print("\nUtleid: ");
+		for (Leiebil car : carsRented) {
+			System.out.print(car.getRegNumber() + ", ");
+		}
+		System.out.println("\n*********** Status slutt *****************");
+		System.out.println();
+	}
+	
 	// Getters and setters
 	
 	public ArrayList<Leiebil> getCarsAvailable () {
