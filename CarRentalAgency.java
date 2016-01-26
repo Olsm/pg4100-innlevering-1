@@ -2,24 +2,24 @@ package innlevering1;
 
 import java.util.ArrayList;
 
-public class Utleier {
-	private ArrayList<Leiebil> carsAvailable;
-	private ArrayList<Leiebil> carsRented;
+public class CarRentalAgency {
+	private ArrayList<RentalCar> carsAvailable;
+	private ArrayList<RentalCar> carsRented;
 	
-	public Utleier () {
+	public CarRentalAgency () {
 		// Create lists for cars available and rented
-		carsAvailable = new ArrayList<Leiebil> (5);
-		carsRented = new ArrayList<Leiebil> (5);
+		carsAvailable = new ArrayList<RentalCar> (5);
+		carsRented = new ArrayList<RentalCar> (5);
 		
-		// Utleier will initially have 5 cars available
+		// CarRentalAgency will initially have 5 cars available
 		for (int i = 1; i <= 5; i++) {
-			carsAvailable.add(new Leiebil("NO" + i));
+			carsAvailable.add(new RentalCar("NO" + i));
 		}
 	}
 	
 	// Provide available car to customer and move to carsRented
-	public Leiebil leie () {
-		Leiebil car = null;
+	public RentalCar rent () {
+		RentalCar car = null;
 		
 		if (getCarsAvailable().size() > 0) {
 			car = carsAvailable.get(0);
@@ -31,7 +31,7 @@ public class Utleier {
 	}
 	
 	// Deliver a rented car and move to carsAvailable
-	public void levereInn (Leiebil car) {
+	public void deliver (RentalCar car) {
 		if (carsRented.contains(car)) {
 			carsRented.remove(car);
 			carsAvailable.add(car);
@@ -43,12 +43,12 @@ public class Utleier {
 		System.out.println("*********** Status for utleiebilene *****************");
 		
 		System.out.print("Ledig: ");
-		for (Leiebil car : carsAvailable) {
+		for (RentalCar car : carsAvailable) {
 			System.out.print(car.getRegNumber() + ", ");
 		}
 		
 		System.out.print("\nUtleid: ");
-		for (Leiebil car : carsRented) {
+		for (RentalCar car : carsRented) {
 			System.out.print(car.getRegNumber() + ", ");
 		}
 		System.out.println("\n*********** Status slutt *****************");
@@ -57,11 +57,11 @@ public class Utleier {
 	
 	// Getters and setters
 	
-	public ArrayList<Leiebil> getCarsAvailable () {
+	public ArrayList<RentalCar> getCarsAvailable () {
 		return carsAvailable;
 	}
 	
-	public ArrayList<Leiebil> getCarsRented () {
+	public ArrayList<RentalCar> getCarsRented () {
 		return carsRented;
 	}
 }

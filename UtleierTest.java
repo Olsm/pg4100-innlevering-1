@@ -10,42 +10,42 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 
 public class UtleierTest {
-	Utleier utleier;
-	Utleier mockUtleier;
-	Leiebil car;
+	CarRentalAgency rentalAgency;
+	CarRentalAgency mockRentalAgency;
+	RentalCar car;
 	
 	@Before
 	public void setup () {
-		utleier = new Utleier(); 
-		mockUtleier = mock (Utleier.class);
-		car = utleier.getCarsAvailable().get(0);
+		rentalAgency = new CarRentalAgency(); 
+		mockRentalAgency = mock (CarRentalAgency.class);
+		car = rentalAgency.getCarsAvailable().get(0);
 	}
 
 	@Test
-	public void testLeieLevereInn () {
+	public void testRentAndDeliver () {
 		// Test leie
-		assertEquals(car, utleier.leie());
-		assertFalse(utleier.getCarsAvailable().contains(car));
-		assertTrue(utleier.getCarsRented().contains(car));
+		assertEquals(car, rentalAgency.rent());
+		assertFalse(rentalAgency.getCarsAvailable().contains(car));
+		assertTrue(rentalAgency.getCarsRented().contains(car));
 		
 		// Test levereInn
-		utleier.levereInn(car);
-		assertTrue(utleier.getCarsAvailable().contains(car));
-		assertFalse(utleier.getCarsRented().contains(car));
+		rentalAgency.deliver(car);
+		assertTrue(rentalAgency.getCarsAvailable().contains(car));
+		assertFalse(rentalAgency.getCarsRented().contains(car));
 	}
 	
 	@Test
-	public void testLeieNotAvailable () {
-		when(mockUtleier.getCarsAvailable()).thenReturn(new ArrayList<Leiebil>());
-		assertEquals(null, mockUtleier.leie());
+	public void testRentNotAvailable () {
+		when(mockRentalAgency.getCarsAvailable()).thenReturn(new ArrayList<RentalCar>());
+		assertEquals(null, mockRentalAgency.rent());
 	}
 	
 	@Test
-	public void testLevereInnCarNotInRented () {
-		car = new Leiebil("NotInUtleier");
-		utleier.levereInn(car);
-		assertFalse(utleier.getCarsAvailable().contains(car));
-		assertFalse(utleier.getCarsRented().contains(car));
+	public void testDeliverCarNotInRented () {
+		car = new RentalCar("NotInUtleier");
+		rentalAgency.deliver(car);
+		assertFalse(rentalAgency.getCarsAvailable().contains(car));
+		assertFalse(rentalAgency.getCarsRented().contains(car));
 	}
 
 }

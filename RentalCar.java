@@ -1,9 +1,9 @@
 package innlevering1;
 
-public class Leiebil {
+public class RentalCar {
 	private String regNumber;
 	
-	public Leiebil (String regNumber) {
+	public RentalCar (String regNumber) {
 		this.regNumber = regNumber;
 	}
 	
