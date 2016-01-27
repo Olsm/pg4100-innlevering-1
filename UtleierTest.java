@@ -23,12 +23,12 @@ public class UtleierTest {
 
 	@Test
 	public void testRentAndDeliver () {
-		// Test leie
+		// Test rent
 		assertEquals(car, rentalAgency.rent());
 		assertFalse(rentalAgency.getCarsAvailable().contains(car));
 		assertTrue(rentalAgency.getCarsRented().contains(car));
 		
-		// Test levereInn
+		// Test deliver
 		rentalAgency.deliver(car);
 		assertTrue(rentalAgency.getCarsAvailable().contains(car));
 		assertFalse(rentalAgency.getCarsRented().contains(car));

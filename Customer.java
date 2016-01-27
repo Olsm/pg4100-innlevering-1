@@ -1,15 +1,18 @@
 package innlevering1;
 
 import java.util.Random;
+import java.util.concurrent.CountDownLatch;
 
 public class Customer implements Runnable {
 	final int maxSecondsToWait = 10;	// default is max 10 seconds
 	private CarRentalAgency rentalAgency;
+	private CountDownLatch latch;
 	private String customerName;
 	private Random rng;
 	
-	public Customer (CarRentalAgency rentalAgency, String customerName) {
+	public Customer (CarRentalAgency rentalAgency, CountDownLatch latch, String customerName) {
 		this.rentalAgency = rentalAgency;
+		this.latch = latch;
 		this.customerName = customerName;
 		rng = new Random();
 	}
@@ -18,8 +21,16 @@ public class Customer implements Runnable {
 		return customerName;
 	}
 	
-	// TODO: Only run if 5 threads has been created
 	public void run () {
+		
+		// Make sure enough threads has been started before running
+		latch.countDown();
+		try {
+			latch.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		while (true) {
 			// sleep before renting car
