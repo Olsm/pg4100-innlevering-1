@@ -45,15 +45,11 @@ public class Customer implements Runnable {
 					sleep(1);
 				continue;
 			} else {
-				// Print status and sleep before delivering car
-				System.out.println(getCustomerName() + " har leid " + car.getRegNumber());
-				rentalAgency.printCarStatus();
+				// Sleep before delivering car
 				sleep(rng.nextInt(maxSecondsToWait/3)+1);	// default is 1-3 seconds
 				
 				// Deliver the car and print status
 				rentalAgency.deliver(car);
-				System.out.println(getCustomerName() + " har levert inn " + car.getRegNumber());
-				rentalAgency.printCarStatus();
 			}
 		}
 	}

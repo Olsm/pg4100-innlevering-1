@@ -17,29 +17,11 @@ public class CarRentalAgency {
 		}
 	}
 	
-	// Provide available car to customer and move to carsRented
-	public RentalCar rent () {
-		RentalCar car = null;
-		
-		if (getCarsAvailable().size() > 0) {
-			car = carsAvailable.get(0);
-			carsAvailable.remove(car);
-			carsRented.add(car);
-		}
-		
-		return car;
-	}
-	
-	// Deliver a rented car and move to carsAvailable
-	public void deliver (RentalCar car) {
-		if (carsRented.contains(car)) {
-			carsRented.remove(car);
-			carsAvailable.add(car);
-		}
-	}
-	
 	// Print status for the cars
-	public void printCarStatus () {
+	public synchronized void printCarStatus (String status) {
+		if (!status.isEmpty())
+			System.out.println(status);
+		
 		System.out.println("*********** Status for utleiebilene *****************");
 		
 		System.out.print("Ledig: ");
@@ -55,13 +37,39 @@ public class CarRentalAgency {
 		System.out.println();
 	}
 	
+	// Provide available car to customer and move to carsRented
+	public synchronized RentalCar rent () {
+		RentalCar car = null;
+		
+		if (getCarsAvailable().size() > 0) {
+			car = carsAvailable.get(0);
+			carsAvailable.remove(car);
+			carsRented.add(car);
+		}
+		
+		if (car != null)
+			printCarStatus(""/*getCustomerName() + " har leid " + car.getRegNumber()*/);
+		
+		return car;
+	}
+	
+	// Deliver a rented car and move to carsAvailable
+	public synchronized void deliver (RentalCar car) {
+		if (carsRented.contains(car)) {
+			carsRented.remove(car);
+			carsAvailable.add(car);
+		}
+		
+		printCarStatus(""/*getCustomerName() + " har levert inn " + car.getRegNumber()*/);
+	}
+	
 	// Getters and setters
 	
-	public ArrayList<RentalCar> getCarsAvailable () {
+	public synchronized ArrayList<RentalCar> getCarsAvailable () {
 		return carsAvailable;
 	}
 	
-	public ArrayList<RentalCar> getCarsRented () {
+	public synchronized ArrayList<RentalCar> getCarsRented () {
 		return carsRented;
 	}
 }

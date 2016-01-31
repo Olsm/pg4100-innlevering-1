@@ -13,7 +13,7 @@ public class RentalCarApp {
 	public static void main(String[] args) {
 		// Use a CountDownLatch to make sure 5 threads have been started before they run
 		CountDownLatch latch = new CountDownLatch(5);
-		rentalAgency.printCarStatus();
+		rentalAgency.printCarStatus("");
 		Scanner in = new Scanner(System.in);
 		for (int i = 1; i <= 10; i++) {
 			//System.out.println("Velg kunde " + i);
