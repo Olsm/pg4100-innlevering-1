@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class CarRentalAgency {
 	private ArrayList<RentalCar> carsAvailable;
 	private ArrayList<RentalCar> carsRented;
+	private ArrayList<Customer> customers;
 	
 	public CarRentalAgency () {
 		// Create lists for cars available and rented
 		carsAvailable = new ArrayList<RentalCar> (5);
-		carsRented = new ArrayList<RentalCar> (5);
+		carsRented = new ArrayList<RentalCar>  (5);
+		customers = new ArrayList<Customer>  (10);
 		
 		// CarRentalAgency will initially have 5 cars available
 		for (int i = 1; i <= 5; i++) {
@@ -30,46 +32,46 @@ public class CarRentalAgency {
 		}
 		
 		System.out.print("\nUtleid: ");
-		for (RentalCar car : carsRented) {
-			System.out.print(car.getRegNumber() + ", ");
+		for (int i = 0; i < carsRented.size(); i++) {
+			RentalCar car = carsRented.get(i);
+			Customer customer = customers.get(i);
+			System.out.print(car.getRegNumber() + " leid av " + customer.getCustomerName() + ", ");
 		}
 		System.out.println("\n*********** Status slutt *****************");
 		System.out.println();
 	}
 	
 	// Provide available car to customer and move to carsRented
-	public synchronized RentalCar rent () {
+	public synchronized RentalCar rent (Customer customer) {
 		RentalCar car = null;
 		
-		if (getCarsAvailable().size() > 0) {
+		if (carsAvailable.size() > 0) {
 			car = carsAvailable.get(0);
-			carsAvailable.remove(car);
 			carsRented.add(car);
+			customers.add(customer);
+			carsAvailable.remove(car);
+			
+			printCarStatus(customer.getCustomerName() + " har leid " + car.getRegNumber());
 		}
-		
-		if (car != null)
-			printCarStatus(""/*getCustomerName() + " har leid " + car.getRegNumber()*/);
 		
 		return car;
 	}
 	
 	// Deliver a rented car and move to carsAvailable
-	public synchronized void deliver (RentalCar car) {
+	public synchronized void deliver (Customer customer, RentalCar car) {
 		if (carsRented.contains(car)) {
 			carsRented.remove(car);
+			customers.remove(customer);
 			carsAvailable.add(car);
+
+			printCarStatus(customer.getCustomerName() + " har levert inn " + car.getRegNumber());
 		}
 		
-		printCarStatus(""/*getCustomerName() + " har levert inn " + car.getRegNumber()*/);
 	}
 	
 	// Getters and setters
 	
 	public synchronized ArrayList<RentalCar> getCarsAvailable () {
 		return carsAvailable;
-	}
-	
-	public synchronized ArrayList<RentalCar> getCarsRented () {
-		return carsRented;
 	}
 }
