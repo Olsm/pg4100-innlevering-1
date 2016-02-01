@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
-public class UtleierTest {
+public class CarRentalAgencyTest {
 	CarRentalAgency rentalAgency;
 	CarRentalAgency mockRentalAgency;
 	RentalCar car;
