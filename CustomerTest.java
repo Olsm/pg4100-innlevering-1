@@ -1,16 +1,15 @@
 package innlevering1;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.mockito.Mockito.*;
-
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
-
-import static org.mockito.Matchers.*;
+import org.junit.Before;
+import org.junit.Test;
 
 public class CustomerTest {
 	CarRentalAgency rentalAgency;
