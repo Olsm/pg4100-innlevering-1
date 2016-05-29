@@ -31,7 +31,7 @@ public class CustomerTest {
 		when(rentalAgency.rent(customer)).thenReturn(car);
 
 		new Thread(customer).start();
-		Thread.sleep(2001);
+		Thread.sleep(3000);
 		
 		verify(rentalAgency, atLeast(1)).rent(customer);
 		verify(rentalAgency, atLeast(1)).deliver(customer, car);
@@ -47,10 +47,32 @@ public class CustomerTest {
 											 .thenReturn(carAvailable);
 
 		new Thread(customer).start();
-		Thread.sleep(3001);
+		Thread.sleep(3000);
 		
 		verify(rentalAgency, atLeast(1)).rent(customer);
 		verify(rentalAgency, atLeast(2)).getCarsAvailable();
+	}
+	
+	@Test
+	public void testWaitsForFiveThreads() throws InterruptedException {
+		latch = new CountDownLatch(5);
+		
+		for (int i = 1; i <= 4; i++) {
+			startNewCustomerThread();
+		}
+
+		Thread.sleep(2000);
+		verify(rentalAgency, never()).rent(any(Customer.class));
+		
+		startNewCustomerThread();
+		Thread.sleep(2000);
+		verify(rentalAgency, atLeast(1)).rent(any(Customer.class));
+	}
+	
+	private void startNewCustomerThread() {
+		customer = new Customer(rentalAgency, latch, "CustomerName", 1);
+		Thread thread = new Thread(customer);
+		thread.start();
 	}
 
 }
