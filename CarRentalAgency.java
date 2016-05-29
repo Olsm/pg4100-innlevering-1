@@ -52,7 +52,8 @@ public class CarRentalAgency {
 			carsAvailable.remove(car);
 			
 			printCarStatus(customer.getCustomerName() + " har leid " + car.getRegNumber());
-		}
+		} else
+			printCarStatus(customer.getCustomerName() + " forsøkte å leie en bil, men ingen var ledig");
 		
 		return car;
 	}
