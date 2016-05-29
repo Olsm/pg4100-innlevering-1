@@ -20,7 +20,7 @@ public class CarRentalAgencyTest {
 		rentalAgency = new CarRentalAgency(); 
 		mockRentalAgency = mock (CarRentalAgency.class);
 		car = rentalAgency.getCarsAvailable().get(0);
-		customer = new Customer(rentalAgency, null, "Olav");
+		customer = new Customer(rentalAgency, null, "Olav", 0);
 	}
 
 	@Test

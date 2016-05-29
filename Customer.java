@@ -4,13 +4,14 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 public class Customer implements Runnable {
-	final int maxSecondsToWait = 10;	// default is max 10 seconds
+	final int maxSecondsToWait;
 	private CarRentalAgency rentalAgency;
 	private CountDownLatch latch;
 	private String customerName;
 	private Random rng;
 	
-	public Customer (CarRentalAgency rentalAgency, CountDownLatch latch, String customerName) {
+	public Customer (CarRentalAgency rentalAgency, CountDownLatch latch, String customerName, int maxSecondsToWait) {
+		this.maxSecondsToWait = maxSecondsToWait;	// default is max 10 seconds
 		this.rentalAgency = rentalAgency;
 		this.latch = latch;
 		this.customerName = customerName;
@@ -46,7 +47,7 @@ public class Customer implements Runnable {
 				continue;
 			} else {
 				// Sleep before delivering car
-				sleep(rng.nextInt(maxSecondsToWait/3)+1);	// default is 1-3 seconds
+				sleep(rng.nextInt(Math.max(1,maxSecondsToWait/3))+1);	// default is 1-3 seconds
 				
 				// Deliver the car and print status
 				rentalAgency.deliver(this, car);

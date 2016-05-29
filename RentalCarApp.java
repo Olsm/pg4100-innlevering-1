@@ -41,7 +41,7 @@ public class RentalCarApp {
 	}
 	
 	public Thread createCustomerThread(String customerName) {
-		Customer customer = new Customer(rentalAgency, latch, customerName);
+		Customer customer = new Customer(rentalAgency, latch, customerName, 10);
 		return new Thread(customer);
 	}
 }
