@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.9" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
-  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="innlevering1.Customer" project="AvansertJavaProg2" 
     file="/AvansertJavaProg2/src/innlevering1/Customer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="502" y="243"/>    
+    <position height="-1" width="-1" x="349" y="413"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="innlevering1.CarRentalAgency" project="AvansertJavaProg2" 
     file="/AvansertJavaProg2/src/innlevering1/CarRentalAgency.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="172" y="496"/>    
+    <position height="-1" width="-1" x="637" y="145"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="innlevering1.RentalCarApp" project="AvansertJavaProg2" 
     file="/AvansertJavaProg2/src/innlevering1/RentalCarApp.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="225" width="245" x="49" y="128"/>    
+    <position height="225" width="245" x="202" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="innlevering1.RentalCar" project="AvansertJavaProg2" 
     file="/AvansertJavaProg2/src/innlevering1/RentalCar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="486" y="501"/>    
+    <position height="-1" width="-1" x="643" y="408"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,9 @@
   <association id="8">    
     <end type="SOURCE" refId="2" navigable="false">      
       <attribute id="9" name="carsAvailable"/>      
-      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="10" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="598" y="325"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="false" multiplicity="true"/>  
@@ -56,7 +58,9 @@
   <association id="11">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="12" name="rentalAgency"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="16" width="23" x="490" y="250"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="false" multiplicity="true"/>  
@@ -72,7 +76,9 @@
   <association id="17">    
     <end type="SOURCE" refId="2" navigable="false">      
       <attribute id="18" name="carsRented"/>      
-      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="19" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="656" y="322"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="false" multiplicity="true"/>  
