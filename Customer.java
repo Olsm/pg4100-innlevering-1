@@ -29,8 +29,7 @@ public class Customer implements Runnable {
 		try {
 			latch.await();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Thread for customer " + getCustomerName() + " was interrupted \nError: " + e.getMessage());
 		}
 		
 		while (true) {
@@ -59,8 +58,7 @@ public class Customer implements Runnable {
 		try {
 			Thread.sleep(secondsToWait * 1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Thread for customer " + getCustomerName() + " was interrupted \nError: " + e.getMessage());
 		}
 	}
 }
